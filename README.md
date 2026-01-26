@@ -4,7 +4,7 @@ A modern, responsive portfolio website showcasing my experience, education, skil
 
 ## 🌐 Live Demo
 
-Visit the live portfolio: [Your Vercel URL here]
+Visit the live portfolio: [https://wasimahmadpk.github.io/portfolio/]
 
 ## ✨ Features
 
