@@ -144,3 +144,5 @@ This is a personal portfolio project. If you find any bugs or have suggestions f
 ---
 
 Made with ❤️ by Wasim Ahmad
+
+<!-- Deploy trigger -->
