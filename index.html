@@ -251,10 +251,34 @@
         <div class="container">
             <h2 class="section-title">Projects</h2>
             <div class="education-grid">
-                <div class="education-card project-card-featured">
+                <div class="education-card project-card-featured project-card-visual">
+                    <div class="project-visual project-visual-causal" aria-hidden="true">
+                        <svg viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="causalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#0ea5e9"/>
+                                    <stop offset="100%" style="stop-color:#06b6d4"/>
+                                </linearGradient>
+                                <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                                    <path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/>
+                                </marker>
+                            </defs>
+                            <circle cx="40" cy="30" r="14" stroke="url(#causalGrad)" stroke-width="2.5" fill="rgba(14,165,233,0.12)"/>
+                            <circle cx="40" cy="70" r="14" stroke="url(#causalGrad)" stroke-width="2.5" fill="rgba(14,165,233,0.12)"/>
+                            <circle cx="100" cy="50" r="16" stroke="url(#causalGrad)" stroke-width="2.5" fill="rgba(14,165,233,0.18)"/>
+                            <circle cx="160" cy="50" r="14" stroke="url(#causalGrad)" stroke-width="2.5" fill="rgba(249,115,22,0.15)"/>
+                            <path d="M54 30 L86 46" stroke="url(#causalGrad)" stroke-width="2" marker-end="url(#arrow)" opacity="0.9"/>
+                            <path d="M54 70 L86 54" stroke="url(#causalGrad)" stroke-width="2" marker-end="url(#arrow)" opacity="0.9"/>
+                            <path d="M116 50 L146 50" stroke="url(#causalGrad)" stroke-width="2" marker-end="url(#arrow)" opacity="0.9"/>
+                            <text x="40" y="34" text-anchor="middle" font-size="10" font-weight="600" fill="#0f172a">X₁</text>
+                            <text x="40" y="74" text-anchor="middle" font-size="10" font-weight="600" fill="#0f172a">X₂</text>
+                            <text x="100" y="54" text-anchor="middle" font-size="10" font-weight="600" fill="#0f172a">M</text>
+                            <text x="160" y="54" text-anchor="middle" font-size="10" font-weight="600" fill="#0f172a">Y</text>
+                        </svg>
+                    </div>
                     <div class="education-icon">🔬</div>
                     <h3 class="education-degree">MPact — Causal Analysis Platform</h3>
-                    <p class="education-institution">Live Project</p>
+                    <p class="education-institution">Causal discovery from time series</p>
                     <p class="education-details">Causal analysis platform for data-driven insights. Upload CSV, run correlation matrix, causal discovery, and A/B tests. Move beyond correlation to understand what truly drives outcomes.</p>
                     <a href="https://mpact-38bf.onrender.com/index.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary project-link">View Live →</a>
                 </div>
@@ -272,15 +296,40 @@
                     <p class="education-details">Cross-platform app for tracking job applications (applied, rejections, interviews) by extracting job-related text from emails. Helps organize and monitor your job search pipeline in one place.</p>
                     <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary project-link">View Project →</a>
                 </div>
-                <div class="education-card">
+                <div class="education-card project-card-visual">
+                    <div class="project-visual project-visual-monitoring" aria-hidden="true">
+                        <svg viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="waveGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:0.9"/>
+                                    <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:0.2"/>
+                                </linearGradient>
+                                <linearGradient id="waveGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.7"/>
+                                    <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.15"/>
+                                </linearGradient>
+                                <linearGradient id="alertGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#f97316"/>
+                                    <stop offset="100%" style="stop-color:#ef4444"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M0 45 Q25 35 50 45 T100 45 T150 45 T200 45" stroke="url(#waveGrad1)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <path d="M0 55 Q25 65 50 55 Q70 42 90 55 T150 55 T200 55" stroke="url(#waveGrad2)" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.85"/>
+                            <path d="M0 72 Q20 58 40 72 T80 72 T120 72 T160 72 T200 72" stroke="#64748b" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.6"/>
+                            <circle cx="90" cy="48" r="4" fill="url(#alertGrad)" opacity="0.95"/>
+                            <rect x="168" y="26" width="20" height="20" rx="5" fill="url(#alertGrad)" opacity="0.9"/>
+                            <path d="M173 31 v6 M176 34 h-6" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+                            <line x1="0" y1="50" x2="200" y2="50" stroke="#e2e8f0" stroke-width="0.5" stroke-dasharray="4 4"/>
+                        </svg>
+                    </div>
                     <div class="education-icon">🛤️</div>
-                    <h3 class="education-degree">Predictive Maintenance for Railway Track</h3>
-                    <p class="education-institution">Sensor Data & Fault Diagnostics</p>
+                    <h3 class="education-degree">Predictive Maintenance & Condition Monitoring</h3>
+                    <p class="education-institution">Sensor data · Fault diagnostics · Anomaly detection</p>
                     <p class="education-details">Application that ingests sensor data from railway infrastructure to detect faults, identify their location along the track, and classify severity. Supports maintenance planning and reduces unplanned downtime.</p>
                 </div>
                 <div class="education-card">
                     <div class="education-icon">🤖</div>
-                    <h3 class="education-degree">Document Q&A System</h3>
+                    <h3 class="education-degree">QAbot — Document Question Answering</h3>
                     <p class="education-institution">LLMs & RAG</p>
                     <p class="education-details">Document question-answering system using Large Language Models and Retrieval-Augmented Generation (RAG)</p>
                 </div>
