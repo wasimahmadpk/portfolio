@@ -62,12 +62,12 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe all sections and cards
+// Observe all sections and cards with staggered delay
 const animatedElements = document.querySelectorAll('.timeline-item, .education-card, .skill-category, .contact-item');
-animatedElements.forEach(el => {
+animatedElements.forEach((el, i) => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = `opacity 0.55s ease ${i * 0.04}s, transform 0.55s ease ${i * 0.04}s`;
     observer.observe(el);
 });
 
