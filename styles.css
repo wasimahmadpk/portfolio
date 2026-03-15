@@ -802,12 +802,14 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     .contact-info {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
