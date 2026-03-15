@@ -26,6 +26,7 @@
         .project-page pre, .project-page code { background: var(--bg-section); padding: 0.2em 0.45em; border-radius: 6px; font-size: 0.9em; color: var(--text); }
         .project-page pre { padding: 1rem; overflow-x: auto; margin: 1rem 0; white-space: pre-wrap; }
         .project-page .priority-table td:first-child { font-weight: 500; color: var(--text); }
+        .project-screenshot { width: 100%; max-width: 720px; margin: 1.25rem 0 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow-lg); border: 1px solid var(--border); display: block; }
     </style>
 </head>
 <body>
@@ -127,6 +128,7 @@
 }</pre>
 
             <h2>7. Dashboard UI (Streamlit)</h2>
+            <img src="images/fruitq-dashboard.png" alt="FruitQ Streamlit dashboard — upload, ripeness results, inventory table and pie chart" class="project-screenshot">
             <p>Sidebar: image upload (drag-and-drop), optional fruit name override. Auto-detection, result display (ripeness, confidence, shipping priority). KPI row: total fruits, ship-today, ripe, unripe. Pie chart: ripeness distribution (Plotly). Inventory table: ranked by urgency, colour-coded labels, ship-today alerts, remove-on-ship buttons.</p>
 
             <h2>8. MLflow, Docker, CI/CD & Deployment</h2>
