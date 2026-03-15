@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobTracker — Job Application Tracker | Wasim Ahmad</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+    <style>
+        .project-page { padding: 100px 0 80px; }
+        .project-page .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; margin-bottom: 2rem; transition: gap 0.2s; }
+        .back-link:hover { gap: 0.75rem; }
+        .project-page h1 { font-family: 'Outfit', sans-serif; font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--text); margin-bottom: 0.5rem; }
+        .project-meta { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; }
+        .project-meta a { color: var(--primary); }
+        .project-page h2 { font-family: 'Outfit', sans-serif; font-size: 1.35rem; color: var(--text); margin: 2.25rem 0 0.75rem; padding-bottom: 0.35rem; border-bottom: 2px solid var(--border); }
+        .project-page p { color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; }
+        .project-page ul { margin: 0.5rem 0 1.25rem 1.5rem; color: var(--text-muted); line-height: 1.8; }
+        .project-page table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.95rem; }
+        .project-page th, .project-page td { padding: 0.6rem 0.75rem; text-align: left; border: 1px solid var(--border); }
+        .project-page th { background: var(--bg-section); font-weight: 600; color: var(--text); }
+        .project-page td { color: var(--text-muted); }
+        .project-page pre, .project-page code { background: var(--bg-section); padding: 0.2em 0.45em; border-radius: 6px; font-size: 0.9em; color: var(--text); }
+        .project-page pre { padding: 1rem; overflow-x: auto; margin: 1rem 0; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Wasim</a>
+            <ul class="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="section project-page">
+        <div class="container">
+            <a href="index.html#projects" class="back-link">← Back to Projects</a>
+
+            <h1>Job Tracker</h1>
+            <p class="project-meta"><strong>Job Application Tracker — Sync from Gmail/Outlook, Dashboard & Filters</strong> · Author: Wasim Ahmad · <a href="https://github.com/wasimahmadpk/JobTracker" target="_blank" rel="noopener noreferrer">github.com/wasimahmadpk/JobTracker</a></p>
+            <p>Track applications in one place → Sync from email → See stats and status at a glance.</p>
+
+            <h2>1. Project Overview</h2>
+            <p>Job Tracker is a cross-platform app that helps users track job applications in one place. It syncs with Gmail and Outlook, automatically classifies job-related emails (applied, response, rejection, interview), and shows a dashboard with counts, filters, and search.</p>
+            <p><strong>How it works</strong></p>
+            <ul>
+                <li>User signs in with Google or Microsoft (OAuth)</li>
+                <li>Backend fetches Sent and Inbox emails for a configurable lookback (1–12 months)</li>
+                <li>Each email is parsed with keyword and regex rules (no LLM): status and position/company are extracted</li>
+                <li>Applications are created or updated by email thread; duplicates are merged by company</li>
+                <li>User sees a home screen, dashboard (stats + pie chart), and a filterable list; can add applications manually and open "Position @ Company" detail views</li>
+            </ul>
+
+            <table>
+                <thead><tr><th>Status</th><th>Meaning</th></tr></thead>
+                <tbody>
+                    <tr><td>Applied</td><td>You sent an application; no reply yet</td></tr>
+                    <tr><td>Response</td><td>Company acknowledged (e.g. We received your application)</td></tr>
+                    <tr><td>Rejection</td><td>Not moving forward</td></tr>
+                    <tr><td>Interview</td><td>Invitation to schedule a call/interview</td></tr>
+                </tbody>
+            </table>
+
+            <h2>2. Tech Stack</h2>
+            <table>
+                <thead><tr><th>Layer</th><th>Technology</th><th>Purpose</th></tr></thead>
+                <tbody>
+                    <tr><td>Frontend</td><td>Flutter 3.x</td><td>Web, Android (iOS ready)</td></tr>
+                    <tr><td>Backend</td><td>Python 3.11, FastAPI, Uvicorn</td><td>REST API, auth, sync</td></tr>
+                    <tr><td>Auth</td><td>Google OAuth, Microsoft OAuth, JWT</td><td>Sign-in, API access</td></tr>
+                    <tr><td>Email</td><td>Gmail API, Microsoft Graph</td><td>Fetch Sent + Inbox</td></tr>
+                    <tr><td>Parsing</td><td>Regex + keywords</td><td>Classify status, extract title/company</td></tr>
+                    <tr><td>Database</td><td>SQLite / PostgreSQL (SQLAlchemy async)</td><td>Users, applications</td></tr>
+                    <tr><td>Hosting</td><td>Render (backend), Vercel (web)</td><td>Production</td></tr>
+                    <tr><td>CI/CD</td><td>GitHub Actions</td><td>Build Android APK, deploy web</td></tr>
+                </tbody>
+            </table>
+            <p>Backend and web can run on free tiers; mobile build in GitHub Actions.</p>
+
+            <h2>3. Architecture</h2>
+            <p>The system separates the Flutter client, the FastAPI backend, and email providers. The backend is the single source of truth; the app never talks to Gmail/Outlook directly.</p>
+            <ul>
+                <li><strong>User (Browser / Android)</strong> → Flutter App (Vercel web / APK) → FastAPI Backend (Render)</li>
+                <li>Backend: <code>/api/auth/*</code> (Google/Microsoft OAuth, JWT), <code>/api/me</code>, <code>/api/dashboard</code>, <code>/api/applications</code>, <code>/api/sync</code></li>
+                <li>Gmail API / Microsoft Graph (OAuth tokens per user) → <code>email_parser.py</code> → SQLite or PostgreSQL</li>
+            </ul>
+            <p><strong>Data flow (sync):</strong> User taps Sync (or changes lookback in Settings) → App calls POST /api/sync → Backend refreshes token, fetches Sent and Inbox for lookback window → Each message is parsed; sent emails create applied applications, inbox emails create or update by thread_id and status → Deduplication merges applications with the same company → App reloads dashboard and list.</p>
+
+            <h2>4. Email Parsing (Keyword & Regex)</h2>
+            <p>Classification is deterministic (no LLM): keyword lists and regex patterns detect status and extract position/company.</p>
+            <p><strong>Response (acknowledgment):</strong> e.g. "thank you for applying", "we have received your application", "application is under review".</p>
+            <p><strong>Rejection:</strong> e.g. "unfortunately", "not moving forward", "we have decided to move forward with other candidates".</p>
+            <p><strong>Interview:</strong> Only when there is a clear invitation to schedule (e.g. "schedule a call", "invite you to an interview", "availability for a call", "calendly"). Generic "next steps" stay as Response.</p>
+            <p><strong>Position & company extraction:</strong> Sent emails: patterns like "Application for &lt;Position&gt; at &lt;Company&gt;" or "&lt;Position&gt; - &lt;Company&gt;"; plus job-title keywords (scientist, engineer, developer, lead, manager). Inbox: e.g. "Thanks for applying to &lt;Company&gt;" → company extracted. Display format: <strong>Position @ Company</strong>.</p>
+
+            <h2>5. Gmail & Outlook Sync</h2>
+            <p><strong>Gmail:</strong> OAuth scope includes Gmail read; backend stores refresh token per user. Sync fetches messages with <code>in:sent newer_than:Nd</code> and <code>in:inbox newer_than:Nd</code> (N = user's email_sync_days). Pagination up to a message cap; each message is fetched, parsed, and upserted by (user_id, email_thread_id). After sync, applications with the same company are merged.</p>
+            <p><strong>Outlook:</strong> Microsoft OAuth; backend uses Microsoft Graph to read mail from Sent and Inbox for the same lookback window. Same upsert and deduplication logic as Gmail.</p>
+
+            <h2>6. REST API (FastAPI)</h2>
+            <p>All routes are under <code>/api</code> and require a valid JWT (except auth and health).</p>
+            <table>
+                <thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>GET</td><td>/api/me</td><td>Current user (email, settings)</td></tr>
+                    <tr><td>PATCH</td><td>/api/me</td><td>Update settings (e.g. email_sync_days)</td></tr>
+                    <tr><td>GET</td><td>/api/dashboard</td><td>Counts: total, pending, responses, rejections, interviews</td></tr>
+                    <tr><td>GET</td><td>/api/applications</td><td>List applications; query: status, search</td></tr>
+                    <tr><td>POST</td><td>/api/applications</td><td>Create application (manual)</td></tr>
+                    <tr><td>GET</td><td>/api/applications/:id</td><td>Get one application</td></tr>
+                    <tr><td>PATCH</td><td>/api/applications/:id</td><td>Update status or notes</td></tr>
+                    <tr><td>POST</td><td>/api/sync</td><td>Trigger email sync (Gmail/Outlook)</td></tr>
+                    <tr><td>POST</td><td>/api/auth/google</td><td>Exchange Google id_token for JWT</td></tr>
+                    <tr><td>GET</td><td>/api/auth/google/redirect</td><td>Start Google OAuth</td></tr>
+                    <tr><td>POST</td><td>/api/auth/refresh</td><td>Refresh JWT</td></tr>
+                </tbody>
+            </table>
+            <p>Example dashboard response: <code>{ total_applications, pending, responses, rejections, interviews, second_interviews }</code></p>
+
+            <h2>7. Flutter App (Web, Android)</h2>
+            <p><strong>Screens:</strong> Splash (checks auth) → Login (Google, Microsoft, Demo) → Home ("Manage your job applications in one place"; quick actions: Dashboard, Applications, Settings) → Dashboard (stat cards, response rate bar, pie chart; cards open filtered list) → Applications (list with status chips and search; each row: "Position @ Company", date, status badge) → Application detail (full details, edit status/notes) → Add application (manual entry) → Settings (email lookback, account, sign out, About with version, developer, bugs: wasimahmad.qc@gmail.com).</p>
+            <p><strong>Theme:</strong> Central AppColors in main.dart (e.g. navy primary); optional themes in docs/THEME-OPTIONS.md. Splash/login use gradient from primary/primaryLight.</p>
+
+            <h2>8. Authentication (Google & Microsoft OAuth, JWT)</h2>
+            <p><strong>Google:</strong> Web: redirect to backend /api/auth/google/redirect; callback returns JWT. Mobile: in-app web view; redirect to jobtracker://auth/callback?token=JWT; app stores token and goes to Home. Backend stores refresh_token for Gmail (sync only).</p>
+            <p><strong>Microsoft:</strong> App opens backend URL for Microsoft OAuth; after login, redirect with token; Outlook sync uses the same token.</p>
+            <p><strong>JWT:</strong> Issued after successful Google/Microsoft login (or demo). Short-lived; client uses POST /api/auth/refresh. All API requests use <code>Authorization: Bearer &lt;token&gt;</code>.</p>
+
+            <h2>9. CI/CD & Deployment</h2>
+            <p><strong>GitHub Actions:</strong> Build Android APK (Flutter, API_BASE_URL from secrets; upload APK as artifact). Deploy web to Vercel (Flutter web build, token and project IDs in secrets).</p>
+            <p><strong>Hosting:</strong> Backend: Render (or Cloud Run, Railway). Web: Vercel. Mobile: user downloads APK from Actions artifact. Render free tier: service sleeps after inactivity (cold start on first request).</p>
+
+            <h2>10. How to Run</h2>
+            <p><strong>Backend (local):</strong></p>
+            <pre>cd backend
+python -m venv venv
+source venv/bin/activate   # or venv\Scripts\activate on Windows
+pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8000</pre>
+            <p>API: http://localhost:8000 · Docs: http://localhost:8000/docs</p>
+            <p><strong>Flutter app (web):</strong> <code>cd app && flutter pub get && flutter run -d chrome</code>. With remote backend: <code>--dart-define=API_BASE_URL=https://your-backend.onrender.com</code></p>
+            <p><strong>Flutter app (Android):</strong> <code>flutter build apk --debug --dart-define=API_BASE_URL=...</code>. Output: app/build/app/outputs/flutter-apk/app-debug.apk</p>
+            <p><strong>Tests:</strong> <code>cd backend && pytest</code></p>
+
+            <h2>11. Project Structure</h2>
+            <p><strong>app/</strong> (Flutter): lib/main.dart, app_router.dart, app_state.dart; screens/ (splash, login, home, dashboard, application_list, application_detail, add_application, settings, auth_callback); services/api_client.dart, auth_service.dart; models/; pubspec.yaml; android/, web/</p>
+            <p><strong>backend/</strong>: app/main.py; core/ (auth, config, database, google_auth, microsoft_auth); models/ (user, application); routers/ (auth, applications); services/ (email_parser, gmail_sync, outlook_sync); schemas/; requirements.txt, .env.example</p>
+            <p>.github/workflows/ (build-android.yml, deploy-vercel.yml); docs/; render.yaml; README.md</p>
+
+            <p style="margin-top: 2.5rem;"><a href="https://github.com/wasimahmadpk/JobTracker" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View on GitHub →</a></p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Wasim. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
