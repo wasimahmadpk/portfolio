@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FruitQ — AI-Powered Fruit Ripeness Detection | Wasim Ahmad</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+    <style>
+        .project-page { padding: 100px 0 80px; }
+        .project-page .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; margin-bottom: 2rem; transition: gap 0.2s; }
+        .back-link:hover { gap: 0.75rem; }
+        .project-page h1 { font-family: 'Outfit', sans-serif; font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--text); margin-bottom: 0.5rem; }
+        .project-meta { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; }
+        .project-meta a { color: var(--primary); }
+        .project-page h2 { font-family: 'Outfit', sans-serif; font-size: 1.35rem; color: var(--text); margin: 2.25rem 0 0.75rem; padding-bottom: 0.35rem; border-bottom: 2px solid var(--border); }
+        .project-page p { color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; }
+        .project-page ul { margin: 0.5rem 0 1.25rem 1.5rem; color: var(--text-muted); line-height: 1.8; }
+        .project-page table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.95rem; }
+        .project-page th, .project-page td { padding: 0.6rem 0.75rem; text-align: left; border: 1px solid var(--border); }
+        .project-page th { background: var(--bg-section); font-weight: 600; color: var(--text); }
+        .project-page td { color: var(--text-muted); }
+        .project-page pre, .project-page code { background: var(--bg-section); padding: 0.2em 0.45em; border-radius: 6px; font-size: 0.9em; color: var(--text); }
+        .project-page pre { padding: 1rem; overflow-x: auto; margin: 1rem 0; white-space: pre-wrap; }
+        .project-page .priority-table td:first-child { font-weight: 500; color: var(--text); }
+    </style>
+</head>
+<body>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Wasim</a>
+            <ul class="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="section project-page">
+        <div class="container">
+            <a href="index.html#projects" class="back-link">← Back to Projects</a>
+
+            <h1>FruitQ</h1>
+            <p class="project-meta"><strong>AI-Powered Fruit Ripeness Detection System</strong> · Author: Wasim Ahmad · <a href="https://github.com/wasimahmadpk/fruitesQ" target="_blank" rel="noopener noreferrer">github.com/wasimahmadpk/fruitesQ</a></p>
+            <p>Upload a photo of a fruit → AI detects ripeness → Most ripe ships first.</p>
+
+            <h2>1. Project Overview</h2>
+            <p>FruitQ is an end-to-end AI system that detects the ripeness of fruits from photos and automatically prioritises them for shipping. The goal is to reduce food waste by ensuring the most ripe fruits ship first before they spoil.</p>
+            <p><strong>How it works</strong></p>
+            <ul>
+                <li>A user uploads a photo of a fruit via the dashboard or API</li>
+                <li>A CLIP vision model identifies the fruit type (e.g. banana, mango, apple)</li>
+                <li>The same model classifies ripeness into one of four categories</li>
+                <li>The fruit is added to an inventory ranked by urgency</li>
+                <li>The most ripe fruits are flagged for immediate shipping</li>
+            </ul>
+
+            <table class="priority-table">
+                <thead><tr><th>Label</th><th>Priority</th><th>Action</th></tr></thead>
+                <tbody>
+                    <tr><td>Overripe</td><td>Today</td><td>Ship immediately</td></tr>
+                    <tr><td>Ripe</td><td>Tomorrow</td><td>Ship next day</td></tr>
+                    <tr><td>Nearly Ripe</td><td>In 3 days</td><td>Monitor</td></tr>
+                    <tr><td>Unripe</td><td>Not yet</td><td>Keep in storage</td></tr>
+                </tbody>
+            </table>
+
+            <h2>2. Tech Stack</h2>
+            <table>
+                <thead><tr><th>Layer</th><th>Technology</th><th>Purpose</th></tr></thead>
+                <tbody>
+                    <tr><td>Language</td><td>Python 3.11</td><td>Main language</td></tr>
+                    <tr><td>Vision Model</td><td>CLIP (Hugging Face)</td><td>Fruit ID + ripeness classification</td></tr>
+                    <tr><td>REST API</td><td>FastAPI + Uvicorn</td><td>Backend endpoints</td></tr>
+                    <tr><td>Dashboard</td><td>Streamlit + Plotly</td><td>Interactive web UI</td></tr>
+                    <tr><td>Tracking</td><td>MLflow</td><td>Experiment & prediction logging</td></tr>
+                    <tr><td>Container</td><td>Docker</td><td>Packaging & portability</td></tr>
+                    <tr><td>CI/CD</td><td>GitHub Actions</td><td>Automated test, build, deploy</td></tr>
+                    <tr><td>Cloud</td><td>Terraform</td><td>Azure infrastructure as code</td></tr>
+                    <tr><td>Cloud</td><td>Azure Container Instances</td><td>Production hosting</td></tr>
+                </tbody>
+            </table>
+            <p>Total cost: $0 — all tools are free or have a free tier.</p>
+
+            <h2>3. Architecture</h2>
+            <p>The system follows a clean separation between the AI model, the API layer, the inventory logic, and the presentation layer. Each component can be developed, tested, and scaled independently.</p>
+            <ul>
+                <li><strong>User (Browser)</strong> → Streamlit Dashboard (port 8501) — POST /predict (image upload), GET /inventory</li>
+                <li><strong>FastAPI Server (port 8000)</strong> — model.py (CLIP), inventory.py (ranked inventory), mlflow_tracking</li>
+                <li>Docker Container → Azure Container Instances</li>
+                <li>GitHub Actions CI/CD → GHCR (image registry)</li>
+            </ul>
+            <p><strong>Data flow:</strong> Image uploaded via Streamlit or API → FastAPI passes to CLIP → two zero-shot passes (fruit ID, 25 types; ripeness, 4 levels) → result stored in inventory (sorted by urgency) → prediction logged to MLflow → dashboard refreshes.</p>
+
+            <h2>4. Vision Model — CLIP</h2>
+            <p><strong>Model:</strong> openai/clip-vit-base-patch32. CLIP does zero-shot classification: no fine-tuning or training data needed. One model handles both fruit identification and ripeness.</p>
+            <p><strong>Step 1 — Fruit identification:</strong> Image + 25 candidate labels (e.g. 'a photo of a banana', 'a photo of a mango') → returns most likely fruit and confidence.</p>
+            <p><strong>Step 2 — Ripeness:</strong> Same model with four labels: "unripe green fruit", "nearly ripe fruit", "ripe ready-to-eat fruit", "overripe spoiled fruit". Highest score = ripeness and shipping priority.</p>
+            <p><strong>Why CLIP:</strong> No training data; single model for ID + ripeness; runs on CPU; free via Hugging Face; ~340 MB, cached after first use.</p>
+
+            <h2>5. Ripeness Ranking & Inventory</h2>
+            <p>Thread-safe, in-memory list of analysed fruits, re-sorted so the most urgent appear first. Ranks: Unripe 0, Nearly Ripe 1, Ripe 2, Overripe 3. Key operations: <code>add()</code>, <code>get_all()</code>, <code>remove()</code>, <code>summary()</code>, <code>clear()</code>.</p>
+
+            <h2>6. REST API (FastAPI)</h2>
+            <table>
+                <thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>POST</td><td>/predict</td><td>Upload image → ripeness + add to inventory</td></tr>
+                    <tr><td>GET</td><td>/inventory</td><td>List all fruits ranked by ripeness</td></tr>
+                    <tr><td>GET</td><td>/inventory/summary</td><td>Counts by category + ship-today list</td></tr>
+                    <tr><td>DELETE</td><td>/inventory/{id}</td><td>Remove a fruit after shipping</td></tr>
+                    <tr><td>GET</td><td>/health</td><td>Health check</td></tr>
+                </tbody>
+            </table>
+            <p>Example response from <code>POST /predict</code>:</p>
+            <pre>{
+  "fruit_name": "Banana",
+  "detected_fruit": "Banana",
+  "fruit_confidence": 92.3,
+  "ripeness_label": "Ripe",
+  "confidence": 84.5,
+  "shipping_priority": "Tomorrow"
+}</pre>
+
+            <h2>7. Dashboard UI (Streamlit)</h2>
+            <p>Sidebar: image upload (drag-and-drop), optional fruit name override. Auto-detection, result display (ripeness, confidence, shipping priority). KPI row: total fruits, ship-today, ripe, unripe. Pie chart: ripeness distribution (Plotly). Inventory table: ranked by urgency, colour-coded labels, ship-today alerts, remove-on-ship buttons.</p>
+
+            <h2>8. MLflow, Docker, CI/CD & Deployment</h2>
+            <p><strong>MLflow:</strong> Every prediction logged (params, metrics, tags). Low-confidence (&lt; 60%) runs tagged with <code>alert: low_confidence</code>.</p>
+            <p><strong>Docker:</strong> Multi-stage build; docker-compose runs API (8000), dashboard (8501), MLflow (5000).</p>
+            <p><strong>CI/CD (GitHub Actions):</strong> Test (pytest) → Build & push image to GHCR → Deploy with Terraform to Azure (main only).</p>
+            <p><strong>Azure (Terraform):</strong> Resource group, Log Analytics, Container Groups for API and Dashboard. Secrets: ARM_CLIENT_ID, ARM_CLIENT_SECRET, ARM_SUBSCRIPTION_ID, ARM_TENANT_ID.</p>
+
+            <h2>9. How to Run</h2>
+            <p><strong>Local:</strong></p>
+            <pre>git clone https://github.com/wasimahmadpk/fruitesQ.git
+cd fruitesQ
+pip install -r requirements.txt
+uvicorn src.api:app --reload --port 8000
+streamlit run src/dashboard.py
+mlflow ui --port 5000   # optional</pre>
+            <p><strong>Docker:</strong> <code>docker compose up</code>. Tests: <code>pytest tests/ -v</code>.</p>
+            <p><strong>Access:</strong> API Docs (Swagger) localhost:8000/docs · Dashboard localhost:8501 · MLflow localhost:5000 · Health localhost:8000/health.</p>
+
+            <h2>10. Project Structure</h2>
+            <p><code>src/</code>: api.py, model.py, inventory.py, dashboard.py · <code>tests/</code>: test_api.py, test_inventory.py · <code>.github/workflows/ci.yml</code> · <code>terraform/main.tf</code> · Dockerfile, docker-compose.yml, requirements.txt, README.md.</p>
+
+            <p style="margin-top: 2.5rem;"><a href="https://github.com/wasimahmadpk/fruitesQ" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View on GitHub →</a></p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Wasim. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
