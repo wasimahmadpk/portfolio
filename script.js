@@ -63,7 +63,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe all sections and cards with staggered delay
-const animatedElements = document.querySelectorAll('.timeline-item, .education-card, .skill-category, .contact-item');
+const animatedElements = document.querySelectorAll('.timeline-item, .education-card, .skill-card, .contact-item');
 animatedElements.forEach((el, i) => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(28px)';
