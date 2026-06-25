@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedX — Medical Content Recommender | Wasim Ahmad</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+    <style>
+        .project-page { padding: 100px 0 80px; }
+        .project-page .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; margin-bottom: 2rem; transition: gap 0.2s; }
+        .back-link:hover { gap: 0.75rem; }
+        .project-page h1 { font-family: 'Outfit', sans-serif; font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--text); margin-bottom: 0.5rem; }
+        .project-meta { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; }
+        .project-meta a { color: var(--primary); }
+        .project-page h2 { font-family: 'Outfit', sans-serif; font-size: 1.35rem; color: var(--text); margin: 2.25rem 0 0.75rem; padding-bottom: 0.35rem; border-bottom: 2px solid var(--border); }
+        .project-page p { color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; }
+        .project-page ul { margin: 0.5rem 0 1.25rem 1.5rem; color: var(--text-muted); line-height: 1.8; }
+        .project-page table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.95rem; }
+        .project-page th, .project-page td { padding: 0.6rem 0.75rem; text-align: left; border: 1px solid var(--border); }
+        .project-page th { background: var(--bg-section); font-weight: 600; color: var(--text); }
+        .project-page td { color: var(--text-muted); }
+        .project-page pre, .project-page code { background: var(--bg-section); padding: 0.2em 0.45em; border-radius: 6px; font-size: 0.9em; color: var(--text); }
+        .project-page pre { padding: 1rem; overflow-x: auto; margin: 1rem 0; white-space: pre-wrap; }
+        .project-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0 2rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Wasim</a>
+            <ul class="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="section project-page">
+        <div class="container">
+            <a href="index.html#projects" class="back-link">← Back to Projects</a>
+
+            <h1>MedX</h1>
+            <p class="project-meta"><strong>Hybrid Medical Content Recommender</strong> · Author: Wasim Ahmad · <a href="https://github.com/wasimahmadpk/MedX" target="_blank" rel="noopener noreferrer">github.com/wasimahmadpk/MedX</a></p>
+            <p><em>The right medical article, for the right doctor, at the right time.</em></p>
+
+            <div class="project-actions">
+                <a href="https://med-x-plum.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Live Demo →</a>
+                <a href="https://med-x-plum.vercel.app/docs" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">API Docs →</a>
+            </div>
+
+            <h2>1. Project Overview</h2>
+            <p>MedX is a deployable hybrid medical content recommender for HCP-style feeds. It combines TF-IDF content filtering, SVD collaborative filtering, synthetic event-log features, and a learned ranker — served through a carousel UI and REST API on Vercel.</p>
+            <p>Doctors are overloaded with literature. MedX answers three questions for every article:</p>
+            <table>
+                <thead><tr><th>Signal</th><th>Question</th><th>Method</th></tr></thead>
+                <tbody>
+                    <tr><td>Relevance</td><td>Does this fit the doctor's specialty?</td><td>TF-IDF + cosine similarity</td></tr>
+                    <tr><td>Behaviour</td><td>Do peers with similar tastes read this?</td><td>SVD matrix factorisation</td></tr>
+                    <tr><td>Timing</td><td>Can they read it now?</td><td>Context features + log patterns by hour</td></tr>
+                </tbody>
+            </table>
+            <p><strong>How it works</strong></p>
+            <ul>
+                <li>Pick a doctor and fetch personalised recommendations (top 3 articles)</li>
+                <li>Content scores from TF-IDF; collaborative scores from mean-centred NumPy SVD</li>
+                <li>15 log-derived features feed a learned ranker (sklearn GBR on Vercel)</li>
+                <li>Time-of-day rules boost lunch-friendly short reads vs evening deep dives</li>
+                <li>Drag the α slider to shift content vs collaborative weight in real time</li>
+            </ul>
+
+            <h2>2. Try It Now</h2>
+            <p><strong>Live app:</strong> <a href="https://med-x-plum.vercel.app" target="_blank" rel="noopener noreferrer">med-x-plum.vercel.app</a></p>
+            <table>
+                <thead><tr><th>Step</th><th>What to do</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>Pick a doctor → <strong>Get Recommendations</strong></td></tr>
+                    <tr><td>2</td><td>Swipe the carousel (up to 3 articles)</td></tr>
+                    <tr><td>3</td><td>Drag <strong>α</strong> to shift content vs collaborative weight</td></tr>
+                    <tr><td>4</td><td>Note the context toast (lunch vs evening; uses your local hour)</td></tr>
+                    <tr><td>5</td><td>Open a slide → article modal + similar articles</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Sample doctors:</strong> <code>d1</code> cardiology · <code>d2</code> neurology · <code>d8</code> general practice · <code>d10</code> psychiatry</p>
+
+            <h2>3. Tech Stack</h2>
+            <table>
+                <thead><tr><th>Layer</th><th>Technology</th><th>Purpose</th></tr></thead>
+                <tbody>
+                    <tr><td>API</td><td>FastAPI + Uvicorn</td><td>REST API + embedded UI</td></tr>
+                    <tr><td>Content-based</td><td>TF-IDF (1–2 grams) + cosine similarity</td><td>Specialty relevance</td></tr>
+                    <tr><td>Collaborative</td><td>Mean-centred SVD (10 factors)</td><td>Peer behaviour signals</td></tr>
+                    <tr><td>Ranker (prod)</td><td>GradientBoostingRegressor</td><td>Final list order on Vercel</td></tr>
+                    <tr><td>Ranker (local)</td><td>LightGBM LambdaRank</td><td>Local dev / training</td></tr>
+                    <tr><td>ML libs</td><td>scikit-learn, NumPy, pandas</td><td>Feature engineering & models</td></tr>
+                    <tr><td>Hosting</td><td>Vercel Python</td><td>Serverless deployment</td></tr>
+                </tbody>
+            </table>
+
+            <h2>4. Recommendation Pipeline</h2>
+            <table>
+                <thead><tr><th>Stage</th><th>Algorithm</th><th>Role</th></tr></thead>
+                <tbody>
+                    <tr><td>1. Scoring</td><td>TF-IDF + SVD</td><td>Relevance signals per article</td></tr>
+                    <tr><td>2. Features</td><td>15 log + content fields</td><td>Ranker input</td></tr>
+                    <tr><td>3. Ranking</td><td>sklearn GBR (prod) / LightGBM (local)</td><td>Final list order</td></tr>
+                    <tr><td>4. Fallback</td><td>α-blend × context boost</td><td>When ranker off or no hour</td></tr>
+                </tbody>
+            </table>
+            <pre>features  = content, collab, α, specialty_match, complexity, read_time,
+            context_boost, hour, log aggregates, dwell, …
+ranker    = sklearn GBR(features)  →  top 3
+fallback  = α·content + (1−α)·collab  ×  context_boost(hour)</pre>
+
+            <h2>5. Context-Aware Timing</h2>
+            <p>Recommendations adapt to time of day — shorter, simpler articles during lunch; longer reads in the evening.</p>
+            <table>
+                <thead><tr><th>Slot</th><th>Hours</th><th>Ideal complexity</th><th>Max read (min)</th></tr></thead>
+                <tbody>
+                    <tr><td>Early Morning</td><td>5–9</td><td>0.8</td><td>20</td></tr>
+                    <tr><td>Morning Work</td><td>9–12</td><td>0.6</td><td>10</td></tr>
+                    <tr><td>Lunch Break</td><td>12–14</td><td>0.3</td><td>5</td></tr>
+                    <tr><td>Afternoon Work</td><td>14–18</td><td>0.55</td><td>9</td></tr>
+                    <tr><td>Evening</td><td>18–22</td><td>0.8</td><td>20</td></tr>
+                    <tr><td>Late Night / Night</td><td>22–5</td><td>0.4</td><td>6</td></tr>
+                </tbody>
+            </table>
+
+            <h2>6. API</h2>
+            <table>
+                <thead><tr><th>Method</th><th>Endpoint</th><th>Description</th></tr></thead>
+                <tbody>
+                    <tr><td>GET</td><td>/</td><td>Web UI</td></tr>
+                    <tr><td>GET</td><td>/api/recommend/{id}</td><td>Personalised recommendations</td></tr>
+                    <tr><td>GET</td><td>/api/doctors</td><td>All doctors</td></tr>
+                    <tr><td>GET</td><td>/api/articles/{id}/similar</td><td>Similar articles</td></tr>
+                    <tr><td>GET</td><td>/api/health</td><td>Status + ranker backend</td></tr>
+                    <tr><td>GET</td><td>/docs</td><td>Swagger UI</td></tr>
+                </tbody>
+            </table>
+
+            <h2>7. Dataset</h2>
+            <p>Synthetic data for the PoC: 15 doctors, 40 articles, 94 ratings, and 319 event logs (impressions, clicks, reads with hour and dwell time).</p>
+
+            <h2>8. How to Run Locally</h2>
+            <pre>git clone https://github.com/wasimahmadpk/MedX.git
+cd MedX
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+uvicorn main:app --reload</pre>
+            <p>Open <a href="http://localhost:8000" target="_blank" rel="noopener noreferrer">localhost:8000</a> · API docs at <code>/docs</code></p>
+
+            <h2>9. Project Structure</h2>
+            <p><code>main.py</code> — FastAPI + embedded UI · <code>recommender/</code> — engine, context, features, rankers · <code>data/seed_data.py</code> — synthetic doctors, articles, ratings, event logs · <code>scripts/train_ranker.py</code> — train sklearn and LightGBM rankers · <code>vercel.json</code> — serverless config</p>
+
+            <div class="project-actions" style="margin-top: 2.5rem;">
+                <a href="https://med-x-plum.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Live Demo →</a>
+                <a href="https://github.com/wasimahmadpk/MedX" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">View on GitHub →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Wasim. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
