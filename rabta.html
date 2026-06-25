@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rabta — Parent–School Bridge App | Wasim Ahmad</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+    <style>
+        .project-page { padding: 100px 0 80px; }
+        .project-page .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; margin-bottom: 2rem; transition: gap 0.2s; }
+        .back-link:hover { gap: 0.75rem; }
+        .project-page h1 { font-family: 'Outfit', sans-serif; font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--text); margin-bottom: 0.5rem; }
+        .project-meta { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; }
+        .project-meta a { color: var(--primary); }
+        .project-page h2 { font-family: 'Outfit', sans-serif; font-size: 1.35rem; color: var(--text); margin: 2.25rem 0 0.75rem; padding-bottom: 0.35rem; border-bottom: 2px solid var(--border); }
+        .project-page p { color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; }
+        .project-page ul { margin: 0.5rem 0 1.25rem 1.5rem; color: var(--text-muted); line-height: 1.8; }
+        .project-page table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.95rem; }
+        .project-page th, .project-page td { padding: 0.6rem 0.75rem; text-align: left; border: 1px solid var(--border); }
+        .project-page th { background: var(--bg-section); font-weight: 600; color: var(--text); }
+        .project-page td { color: var(--text-muted); }
+        .project-page pre, .project-page code { background: var(--bg-section); padding: 0.2em 0.45em; border-radius: 6px; font-size: 0.9em; color: var(--text); }
+        .project-page pre { padding: 1rem; overflow-x: auto; margin: 1rem 0; white-space: pre-wrap; }
+        .project-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0 2rem; }
+        .project-screenshots { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.25rem 0 1.5rem; }
+        .project-screenshots figure { flex: 1 1 180px; margin: 0; text-align: center; }
+        .project-screenshots img { width: 100%; max-width: 220px; border-radius: var(--radius); box-shadow: var(--shadow-lg); border: 1px solid var(--border); }
+        .project-screenshots figcaption { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Wasim</a>
+            <ul class="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="section project-page">
+        <div class="container">
+            <a href="index.html#projects" class="back-link">← Back to Projects</a>
+
+            <h1>Rabta — رابطہ</h1>
+            <p class="project-meta"><strong>Parent–School Digital Bridge</strong> · Author: Wasim Ahmad · <a href="https://github.com/wasimahmadpk/rabta" target="_blank" rel="noopener noreferrer">github.com/wasimahmadpk/rabta</a></p>
+            <p><em>The digital bridge between parents, teachers, and school.</em> Bilingual <strong>English / اردو</strong> end-to-end.</p>
+
+            <div class="project-actions">
+                <a href="https://rabta.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Live Demo →</a>
+                <a href="https://github.com/wasimahmadpk/rabta" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">View on GitHub →</a>
+            </div>
+
+            <div class="project-screenshots">
+                <figure>
+                    <img src="https://raw.githubusercontent.com/wasimahmadpk/rabta/main/assets/education-app-first-screen.png" alt="Rabta welcome screen with role and language picker">
+                    <figcaption>Welcome · role + language</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://raw.githubusercontent.com/wasimahmadpk/rabta/main/assets/education-app-parent-dashboard.png" alt="Rabta parent dashboard">
+                    <figcaption>Parent dashboard</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://raw.githubusercontent.com/wasimahmadpk/rabta/main/assets/education-app-progress-screen.png" alt="Rabta progress screen">
+                    <figcaption>Progress by subject</figcaption>
+                </figure>
+            </div>
+
+            <h2>1. Project Overview</h2>
+            <p>Rabta (رابطہ — "connection" in Urdu) is a cross-platform Flutter app that connects parents and teachers with their school. Parents track progress, view reports, and raise concerns. Teachers post attendance, update grades, publish exams and notices, and handle parent requests.</p>
+            <p><strong>How it works</strong></p>
+            <ul>
+                <li>Welcome screen: pick <strong>Parent</strong> or <strong>Teacher</strong> role and toggle English / Urdu</li>
+                <li>Parents see child summary, subject progress, report cards, exam schedule, notices, and request forms</li>
+                <li>Teachers mark attendance, enter grades, post exams and announcements, and review parent concerns</li>
+                <li>All demo flows run on rich mock data — no account or backend required to explore</li>
+                <li>Supabase is wired for optional real backend integration with RLS-backed tables</li>
+            </ul>
+
+            <h2>2. Try the Demo</h2>
+            <p><strong>Live web app:</strong> <a href="https://rabta.vercel.app" target="_blank" rel="noopener noreferrer">rabta.vercel.app</a></p>
+            <p><strong>Parent demo</strong> — select Parent, tap Sign in, explore with Ali / Class 5-A / Pilot School — Lahore:</p>
+            <table>
+                <thead><tr><th>Screen</th><th>Demo data</th></tr></thead>
+                <tbody>
+                    <tr><td>Progress</td><td>Week, Month, Term periods with subject grades and teacher remarks</td></tr>
+                    <tr><td>Reports</td><td>3 report cards with per-subject percentage scores</td></tr>
+                    <tr><td>Exams</td><td>4 upcoming exams with date, time, and room</td></tr>
+                    <tr><td>Notices</td><td>School announcements with "What's new" highlights</td></tr>
+                    <tr><td>Parent requests</td><td>Raise a concern or book a head-of-school meeting</td></tr>
+                </tbody>
+            </table>
+            <p><strong>Teacher demo</strong> — select Teacher, explore as Ms. Sara Ahmed / Mathematics / Class 5-A (12 students):</p>
+            <table>
+                <thead><tr><th>Screen</th><th>What you can do</th></tr></thead>
+                <tbody>
+                    <tr><td>Mark Attendance</td><td>Toggle each student present/absent; submit with confirmation</td></tr>
+                    <tr><td>Update Grades</td><td>Pick subject + period; enter letter grade and remark per student</td></tr>
+                    <tr><td>Post Exam Date</td><td>Choose subject, date, optional time, and room</td></tr>
+                    <tr><td>Post Notice</td><td>Write title + body with live preview before posting</td></tr>
+                    <tr><td>Parent Requests</td><td>Read expandable concern and meeting-request cards</td></tr>
+                </tbody>
+            </table>
+
+            <h2>3. Tech Stack</h2>
+            <table>
+                <thead><tr><th>Layer</th><th>Technology</th><th>Purpose</th></tr></thead>
+                <tbody>
+                    <tr><td>UI</td><td>Flutter stable · Material 3</td><td>Web, Android, iOS-ready</td></tr>
+                    <tr><td>Language</td><td>Dart ^3.11</td><td>Cross-platform app logic</td></tr>
+                    <tr><td>Localization</td><td>flutter_localizations + intl</td><td>English / Urdu UI and date pickers</td></tr>
+                    <tr><td>Persistence</td><td>shared_preferences</td><td>Language preference</td></tr>
+                    <tr><td>Backend (optional)</td><td>Supabase</td><td>Auth and data when env vars are set</td></tr>
+                    <tr><td>Web hosting</td><td>Vercel</td><td>Flutter web build via vercel_build.sh</td></tr>
+                    <tr><td>Android CI</td><td>GitHub Actions</td><td>Release APK artifact on push to main</td></tr>
+                </tbody>
+            </table>
+
+            <h2>4. Parent Portal</h2>
+            <ul>
+                <li><strong>Dashboard</strong> — child summary card and five quick-action tiles</li>
+                <li><strong>Progress</strong> — attendance-style subject bars across Week / Month / Term</li>
+                <li><strong>Reports</strong> — published report cards with per-subject scores</li>
+                <li><strong>Exam schedule</strong> — upcoming exams with date, time, and room</li>
+                <li><strong>School notices</strong> — announcements from the school</li>
+                <li><strong>Parent requests</strong> — raise a concern (teacher, conduct, facilities) or book a head meeting</li>
+            </ul>
+
+            <h2>5. Teacher Portal</h2>
+            <ul>
+                <li><strong>Dashboard</strong> — class overview with colour-coded action tiles</li>
+                <li><strong>Mark Attendance</strong> — present/absent toggles with live counter and "All present" shortcut</li>
+                <li><strong>Update Grades</strong> — subject chip + period selector; grade entry via bottom sheet</li>
+                <li><strong>Post Exam Date</strong> — subject, date picker, optional time, room field</li>
+                <li><strong>Post Notice</strong> — title + body with live preview card</li>
+                <li><strong>Parent Requests</strong> — expandable cards for concerns and meeting proposals</li>
+            </ul>
+
+            <h2>6. Localization</h2>
+            <p>Every heading, label, chip, and date format is available in both English and Urdu via <code>RabtaStrings</code> and <code>TeacherStrings</code>. The chosen language persists across app restarts and flows through the entire navigation stack.</p>
+
+            <h2>7. Deploy & CI/CD</h2>
+            <p><strong>Web (Vercel):</strong> Vercel runs <code>scripts/vercel_build.sh</code> to compile Flutter web; SPA rewrites via <code>vercel.json</code>.</p>
+            <p><strong>Android:</strong> GitHub Actions builds a release APK on every push to main — download from Actions → Artifacts → <code>rabta-release-apk</code>.</p>
+            <p><strong>Supabase (optional):</strong> Pass <code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code> at build time to enable real backend reads/writes.</p>
+
+            <h2>8. How to Run Locally</h2>
+            <pre>git clone https://github.com/wasimahmadpk/rabta.git
+cd rabta
+flutter pub get
+flutter config --enable-web
+flutter run -d web-server   # or: flutter run -d chrome</pre>
+            <p>Production web build: <code>flutter build web --release</code> → serve <code>build/web</code></p>
+
+            <h2>9. Project Structure</h2>
+            <p><code>lib/screens/</code> — welcome, parent dashboard, progress, reports, exams, notices, concerns, and five teacher screens · <code>lib/data/</code> — mock progress, reports, and class roster · <code>lib/locale/</code> — bilingual strings · <code>lib/supabase/</code> — optional backend client · <code>scripts/vercel_build.sh</code> · <code>.github/workflows/android.yml</code></p>
+
+            <div class="project-actions" style="margin-top: 2.5rem;">
+                <a href="https://rabta.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Live Demo →</a>
+                <a href="https://github.com/wasimahmadpk/rabta" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">View on GitHub →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Wasim. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
