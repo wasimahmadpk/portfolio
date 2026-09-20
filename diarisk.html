@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiaRisk — Diabetes Risk Scoring | Wasim Ahmad</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+    <style>
+        .project-page { padding: 100px 0 80px; }
+        .project-page .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; margin-bottom: 2rem; transition: gap 0.2s; }
+        .back-link:hover { gap: 0.75rem; }
+        .project-page h1 { font-family: 'Outfit', sans-serif; font-size: clamp(1.75rem, 4vw, 2.25rem); color: var(--text); margin-bottom: 0.5rem; }
+        .project-meta { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; }
+        .project-meta a { color: var(--primary); }
+        .project-page h2 { font-family: 'Outfit', sans-serif; font-size: 1.35rem; color: var(--text); margin: 2.25rem 0 0.75rem; padding-bottom: 0.35rem; border-bottom: 2px solid var(--border); }
+        .project-page p { color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; }
+        .project-page ul { margin: 0.5rem 0 1.25rem 1.5rem; color: var(--text-muted); line-height: 1.8; }
+        .project-page table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.95rem; }
+        .project-page th, .project-page td { padding: 0.6rem 0.75rem; text-align: left; border: 1px solid var(--border); }
+        .project-page th { background: var(--bg-section); font-weight: 600; color: var(--text); }
+        .project-page td { color: var(--text-muted); }
+        .project-page code { background: var(--bg-section); padding: 0.2em 0.45em; border-radius: 6px; font-size: 0.9em; color: var(--text); }
+        .project-page pre { background: var(--bg-section); padding: 1rem; overflow-x: auto; margin: 1rem 0; white-space: pre-wrap; border-radius: 6px; font-size: 0.85em; color: var(--text); }
+        .project-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0 2rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Wasim</a>
+            <ul class="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="section project-page">
+        <div class="container">
+            <a href="index.html#projects" class="back-link">← Back to Projects</a>
+
+            <h1>DiaRisk</h1>
+            <p class="project-meta"><strong>Diabetes risk scoring with production MLOps</strong> · Author: Wasim Ahmad · <a href="https://github.com/wasimahmadpk/diarisk" target="_blank" rel="noopener noreferrer">github.com/wasimahmadpk/diarisk</a></p>
+            <p>Eight clinical measurements in, a calibrated-style probability and risk band out — served as a public API on AWS Lambda with an ops UI, CloudWatch metrics, and live drift checks.</p>
+
+            <div class="project-actions">
+                <a href="https://b2je1touwh.execute-api.eu-north-1.amazonaws.com/docs" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Interactive API docs →</a>
+                <a href="https://github.com/wasimahmadpk/diarisk" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub →</a>
+            </div>
+
+            <h2>1. Overview</h2>
+            <p>DiaRisk is a decision-support model trained on the <a href="https://archive.ics.uci.edu/dataset/34/diabetes" target="_blank" rel="noopener noreferrer">Pima Indians Diabetes</a> cohort (768 samples). It is <strong>not a medical diagnosis</strong> and the training population is women of Pima heritage in that study, not a general clinic.</p>
+            <p><strong>Pipeline</strong></p>
+            <ul>
+                <li>Same 80/20 stratified split (seed 42) for logistic regression baseline and LightGBM</li>
+                <li>Zeros in glucose, blood pressure, skin thickness, insulin, and BMI treated as missing, then median-imputed</li>
+                <li>LightGBM test ROC-AUC ≈ 0.82; risk bands low / moderate / high from predicted probability</li>
+                <li>Joblib model in a FastAPI container (Mangum) on Lambda behind API Gateway; static UI on Vercel</li>
+            </ul>
+
+            <h2>2. Architecture</h2>
+            <pre>train → MLflow + joblib → FastAPI image → ECR → Lambda → HTTP API → UI / curl</pre>
+            <table>
+                <thead><tr><th>Layer</th><th>Choice</th><th>Why</th></tr></thead>
+                <tbody>
+                    <tr><td>Model</td><td>LightGBM (+ logistic baseline)</td><td>Tabular data; comparable split</td></tr>
+                    <tr><td>Tracking</td><td>MLflow</td><td>Params, metrics, signature</td></tr>
+                    <tr><td>API</td><td>FastAPI + Pydantic</td><td>Validation, OpenAPI</td></tr>
+                    <tr><td>Compute</td><td>AWS Lambda (eu-north-1)</td><td>Scale to zero; idle cost ≈ 0</td></tr>
+                    <tr><td>IaC</td><td>Terraform</td><td>ECR, Lambda, HTTP API, IAM, logs</td></tr>
+                    <tr><td>CI</td><td>GitHub Actions</td><td>pytest, Docker, GHCR; Lambda deploy optional</td></tr>
+                    <tr><td>Ops</td><td>CloudWatch via <code>GET /stats</code></td><td>Invocations, errors, latency, 4xx/5xx</td></tr>
+                    <tr><td>Drift</td><td><code>GET /drift</code></td><td>z-score of live means vs training mean/std</td></tr>
+                </tbody>
+            </table>
+
+            <h2>3. API</h2>
+            <table>
+                <thead><tr><th>Endpoint</th><th>Role</th></tr></thead>
+                <tbody>
+                    <tr><td><code>GET /health</code></td><td>Service and model loaded</td></tr>
+                    <tr><td><code>POST /predict</code></td><td>Eight fields → probability, class, risk band</td></tr>
+                    <tr><td><code>GET /stats</code></td><td>Last 72h CloudWatch (Lambda + API Gateway)</td></tr>
+                    <tr><td><code>GET /drift</code></td><td>Live data/score drift vs training snapshot</td></tr>
+                    <tr><td><code>GET /docs</code></td><td>Swagger UI</td></tr>
+                </tbody>
+            </table>
+            <pre>curl -s https://b2je1touwh.execute-api.eu-north-1.amazonaws.com/predict \
+  -H 'Content-Type: application/json' \
+  -d '{"pregnancies":2,"glucose":140,"blood_pressure":72,"skin_thickness":35,"insulin":110,"bmi":32.5,"diabetes_pedigree":0.55,"age":45}'</pre>
+
+            <h2>4. Drift (honest scope)</h2>
+            <p>Live data drift is <strong>not</strong> a statistical hypothesis test. Each <code>/predict</code> updates an in-process running mean. Then:</p>
+            <pre>z = (live mean − train mean) / train std</pre>
+            <p>|z| ≥ 3 flags a feature. Score drift uses the same idea on predicted probabilities versus the test-set score mix. True performance drop (AUC/F1) still needs labeled outcomes. Running means reset on Lambda cold start — no feature store or DynamoDB.</p>
+
+            <h2>5. Delivery notes</h2>
+            <ul>
+                <li>Lambda image is <code>linux/amd64</code> (GitHub <code>ubuntu-latest</code> / local <code>--platform linux/amd64</code> on Apple Silicon)</li>
+                <li>Function URL returned 403 on this account; public HTTPS is API Gateway HTTP API</li>
+                <li>CORS preflight: explicit OPTIONS 204 so the browser UI can POST</li>
+                <li>Vercel hosts only static <code>web/</code> — it must not pip-install the Python API</li>
+            </ul>
+        </div>
+    </main>
+</body>
+</html>
